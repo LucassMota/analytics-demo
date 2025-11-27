@@ -1,11 +1,19 @@
 import React from "react";
+import Switch from "./Switch";
 
 type HeaderProps = {
   children?: React.ReactNode;
   className?: string;
+  isSidebarOpen: boolean;
+  setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const Header = ({ children, className }: HeaderProps) => {
+export const Header = ({
+  children,
+  className,
+  isSidebarOpen,
+  setIsSidebarOpen,
+}: HeaderProps) => {
   return (
     <header
       role="banner"
@@ -15,8 +23,12 @@ export const Header = ({ children, className }: HeaderProps) => {
         className ?? "",
       ].join(" ")}
     >
-      <div className="h-14 px-4 sm:px-6 flex items-center justify-between gap-3">
-        {children}
+      <div className="h-20 px-4 sm:px-6 flex items-center justify-between gap-3">
+        <div className="flex items-center gap-3">{children}</div>
+        <button onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+          {isSidebarOpen ? "Close" : "Open"}
+        </button>
+        <Switch />
       </div>
     </header>
   );
