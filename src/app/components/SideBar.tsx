@@ -25,9 +25,9 @@ export const SideBar = ({
       id="sidebar"
       role="complementary"
       aria-label="Sidebar"
-      data-open={open}
+      data-open={isSidebarOpen}
       className={[
-        "sticky top-14 z-40 h-[calc(100vh-3.5rem)] shrink-0",
+        "sticky z-40 h-screen shrink-0",
         "overflow-y-auto overflow-x-hidden",
         "border-r border-[var(--gray-neutral-200)]",
         "transition-[width] duration-300 ease-in-out",

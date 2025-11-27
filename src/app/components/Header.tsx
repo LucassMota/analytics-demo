@@ -24,7 +24,6 @@ export const Header = ({
       ].join(" ")}
     >
       <div className="h-20 px-4 sm:px-6 flex items-center justify-between gap-3">
-        <div className="flex items-center gap-3">{children}</div>
         <button onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
           {isSidebarOpen ? "Close" : "Open"}
         </button>
