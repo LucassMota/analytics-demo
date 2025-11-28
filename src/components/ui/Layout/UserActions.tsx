@@ -1,4 +1,4 @@
-import SelectLanguage from "../../features/SelectLanguage/SelectLanguage";
+import SelectLanguage from "../../features/SelectLanguage";
 import Switch from "../Switch";
 
 const UserActions: React.FC = () => {
