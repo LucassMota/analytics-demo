@@ -1,3 +1,4 @@
+import { Chat } from "@/src/components/features/Chat";
 import { useTranslations } from "next-intl";
 
 export default function Home() {
@@ -5,8 +6,7 @@ export default function Home() {
 
   return (
     <div className="h-full w-full">
-      <h1>{t("welcome")}</h1>
-      <p>{t("description")}</p>
+      <Chat />
     </div>
   );
 }
