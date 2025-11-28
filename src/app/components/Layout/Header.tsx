@@ -17,8 +17,9 @@ export const Header = ({
     <header
       role="banner"
       className={[
+        "bg-[var(--gray-light-mode-25)] text-[var(--gray-light-mode-900)] dark:bg-[var(--gray-dark-mode-900)] dark:text-[var(--gray-dark-mode-25)]",
         "sticky top-0 z-50 w-full shadow-sm",
-        "border-b border-[var(--gray-neutral-200)]",
+        "border-b border-[var(--gray-light-mode-300)] dark:border-[var(--gray-dark-mode-800)]",
         className ?? "",
       ].join(" ")}
     >

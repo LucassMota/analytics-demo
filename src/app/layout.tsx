@@ -10,7 +10,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning className="min-h-full">
-      <body className="min-h-screen antialiased bg-[var(--gray-light-mode-25)] text-[var(--gray-light-mode-900)] dark:bg-[var(--gray-dark-mode-900)] dark:text-[var(--gray-dark-mode-25)]">
+      <body className="min-h-screen antialiased bg-[var(--gray-light-mode-25)] text-[var(--gray-light-mode-900)] dark:bg-[var(--gray-dark-mode-950)] dark:text-[var(--gray-dark-mode-25)]">
         <ThemeProvider>
           <NextIntlClientProvider>{children}</NextIntlClientProvider>
         </ThemeProvider>

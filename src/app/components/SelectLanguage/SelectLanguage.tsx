@@ -65,8 +65,13 @@ const SelectLanguage: React.FC = () => {
               alt={`${selectedLanguage.text} Flag`}
             />
           )}
-          <span className="text-white text-base">{selectedLanguage?.text}</span>
-          <ChevronDown size={16} className="text-white" />
+          <span className="text-[var(--gray-light-mode-900)] dark:text-[var(--gray-dark-mode-25)] text-base">
+            {selectedLanguage?.text}
+          </span>
+          <ChevronDown
+            size={16}
+            className="text-[var(--gray-light-mode-900)] dark:text-[var(--gray-dark-mode-25)]"
+          />
         </div>
       </DropdownMenuTrigger>
 
@@ -76,7 +81,7 @@ const SelectLanguage: React.FC = () => {
             key={lang.id}
             disabled={isPending}
             onClick={() => handleLanguageChange(lang.code)}
-            className="flex max-w-21 items-center gap-2 px-3 py-1.5 rounded text-sm transition-all duration-300 mt-1 cursor-pointer hover:bg-neutral-light data-[highlighted]:bg-neutral-light bg-active text-white"
+            className="flex max-w-21 items-center gap-2 px-3 py-1.5 rounded text-sm transition-all duration-300 mt-1 cursor-pointer hover:bg-[var(--gray-dark-mode-500)] dark:hover:bg-[var(--gray-dark-mode-500)] bg-[var(--gray-light-mode-200)] dark:bg-[var(--gray-dark-mode-800)] text-[var(--gray-light-mode-900)] dark:text-[var(--gray-dark-mode-25)]"
           >
             <img src={lang.src} width="20" alt={lang.alt} />
             {lang.text}
