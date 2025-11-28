@@ -8,7 +8,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "../DropdownMenu";
+} from "../../ui/DropdownMenu";
 import { ChevronDown } from "lucide-react";
 import useSelectLanguage from "./SelecteLanguage.controller";
 import { Locale } from "next-intl";
