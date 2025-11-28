@@ -1,5 +1,5 @@
 import React from "react";
-import Switch from "./Switch";
+import UserActions from "./UserActions";
 
 type HeaderProps = {
   children?: React.ReactNode;
@@ -9,7 +9,6 @@ type HeaderProps = {
 };
 
 export const Header = ({
-  children,
   className,
   isSidebarOpen,
   setIsSidebarOpen,
@@ -27,7 +26,7 @@ export const Header = ({
         <button onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
           {isSidebarOpen ? "Close" : "Open"}
         </button>
-        <Switch />
+        <UserActions />
       </div>
     </header>
   );
