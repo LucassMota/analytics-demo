@@ -1,58 +1,58 @@
-"use client";
+'use client'
 
-import { useTransition } from "react";
-import { setCookie } from "cookies-next";
+import { useTransition } from 'react'
+import { setCookie } from 'cookies-next'
 
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "../../ui/DropdownMenu";
-import { ChevronDown } from "lucide-react";
-import useSelectLanguage from "./SelecteLanguage.controller";
-import { Locale } from "next-intl";
-import { ELanguage } from "./types";
-import { setUserLocale } from "@/src/services/locale";
+  DropdownMenuTrigger
+} from '../../ui/DropdownMenu'
+import { ChevronDown } from 'lucide-react'
+import useSelectLanguage from './SelecteLanguage.controller'
+import { Locale } from 'next-intl'
+import { ELanguage } from './types'
+import { setUserLocale } from '@/src/services/locale'
 
 const SelectLanguage: React.FC = () => {
-  const { language, setLanguage } = useSelectLanguage();
-  const [isPending, startTransition] = useTransition();
+  const { language, setLanguage } = useSelectLanguage()
+  const [isPending, startTransition] = useTransition()
 
   const handleLanguageChange = (newLocale: Locale) => {
-    setCookie("NEXT_LOCALE", newLocale);
+    setCookie('NEXT_LOCALE', newLocale)
     startTransition(() => {
-      setLanguage(newLocale as ELanguage);
-      setUserLocale(newLocale as ELanguage);
-    });
-  };
+      setLanguage(newLocale as ELanguage)
+      setUserLocale(newLocale as ELanguage)
+    })
+  }
 
   const languages = [
     {
       id: 1,
-      src: "https://flagcdn.com/es.svg",
-      alt: "Spain",
-      code: "es-ES" as Locale,
-      text: "ES",
+      src: 'https://flagcdn.com/es.svg',
+      alt: 'Spain',
+      code: 'es-ES' as Locale,
+      text: 'ES'
     },
     {
       id: 2,
-      src: "https://flagcdn.com/br.svg",
-      alt: "Brazil",
-      code: "pt-BR" as Locale,
-      text: "PT",
+      src: 'https://flagcdn.com/br.svg',
+      alt: 'Brazil',
+      code: 'pt-BR' as Locale,
+      text: 'PT'
     },
     {
       id: 3,
-      src: "https://flagcdn.com/us.svg",
-      alt: "United States",
-      code: "en-US" as Locale,
-      text: "EN",
-    },
-  ];
+      src: 'https://flagcdn.com/us.svg',
+      alt: 'United States',
+      code: 'en-US' as Locale,
+      text: 'EN'
+    }
+  ]
 
-  const selectedLanguage = languages.find((lang) => lang.code === language);
-  const availableLanguages = languages.filter((lang) => lang.code !== language);
+  const selectedLanguage = languages.find((lang) => lang.code === language)
+  const availableLanguages = languages.filter((lang) => lang.code !== language)
 
   return (
     <DropdownMenu>
@@ -89,7 +89,7 @@ const SelectLanguage: React.FC = () => {
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
-  );
-};
+  )
+}
 
-export default SelectLanguage;
+export default SelectLanguage
