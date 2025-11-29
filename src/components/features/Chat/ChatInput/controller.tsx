@@ -47,6 +47,7 @@ export const useChatInput = ({
       },
       onKeyDown: (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === 'Enter' && !e.shiftKey) {
+          if (e.nativeEvent.isComposing || e.repeat) return
           e.preventDefault()
           handleSend()
         }

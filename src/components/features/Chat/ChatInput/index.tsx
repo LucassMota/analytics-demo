@@ -25,7 +25,7 @@ export const ChatInput = ({
         <ChatActions />
       </div>
       <textarea
-        className="sm:px-4 sm:py-3 w-full min-h-28 resize-y rounded-md outline-none placeholder:text-[var(--gray-neutral-400)] bg-[var(--gray-light-mode-25)] text-[var(--gray-light-mode-900)] dark:bg-[var(--gray-dark-mode-950)] dark:text-[var(--gray-dark-mode-25)]"
+        className="sm:px-4 sm:py-3 w-full min-h-28 resize-none rounded-md outline-none placeholder:text-[var(--gray-neutral-400)] bg-[var(--gray-light-mode-25)] text-[var(--gray-light-mode-900)] dark:bg-[var(--gray-dark-mode-950)] dark:text-[var(--gray-dark-mode-25)]"
         placeholder="Type your message..."
         {...textareaProps}
       />
@@ -33,7 +33,7 @@ export const ChatInput = ({
         <button
           type="button"
           aria-label="Send message"
-          className="bottom-4 right-4 rounded-md px-3 py-2 text-sm font-medium shadow-sm"
+          className="bottom-4 cursor-pointer right-4 rounded-md px-3 py-2 text-sm font-medium shadow-sm"
           {...sendButtonProps}
         >
           {

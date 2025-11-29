@@ -1,13 +1,13 @@
-"use client";
+'use client'
 
-import { useTheme } from "@/src/providers/ThemeProvider";
-import React from "react";
+import { useTheme } from '@/src/providers/ThemeProvider'
+import React from 'react'
 
 type SwitchProps = {
-  className?: string;
-  id?: string;
-  title?: string;
-};
+  className?: string
+  id?: string
+  title?: string
+}
 
 /**
  * Minimal theme switch component using ThemeProvider context.
@@ -18,19 +18,19 @@ type SwitchProps = {
 export default function Switch({
   className,
   id,
-  title = "Toggle theme",
+  title = 'Toggle theme'
 }: SwitchProps) {
-  const { theme, toggleTheme } = useTheme();
-  const isDark = theme === "dark";
+  const { theme, toggleTheme } = useTheme()
+  const isDark = theme === 'dark'
 
-  const handleClick = () => toggleTheme();
+  const handleClick = () => toggleTheme()
 
   const handleKeyDown: React.KeyboardEventHandler<HTMLButtonElement> = (e) => {
-    if (e.key === " " || e.key === "Enter") {
-      e.preventDefault();
-      toggleTheme();
+    if (e.key === ' ' || e.key === 'Enter') {
+      e.preventDefault()
+      toggleTheme()
     }
-  };
+  }
 
   return (
     <button
@@ -42,20 +42,20 @@ export default function Switch({
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       className={[
-        "relative inline-flex h-6 w-10 items-center rounded-full transition-colors",
-        "border border-[var(--gray-neutral-200)]",
-        "bg-[var(--gray-light-mode-50)] dark:bg-[var(--gray-dark-mode-800)]",
-        className ?? "",
-      ].join(" ")}
+        'relative inline-flex h-6 w-10 items-center rounded-full transition-colors',
+        'border border-[var(--gray-neutral-200)]',
+        'bg-[var(--gray-light-mode-300)] dark:bg-[var(--gray-dark-mode-800)]',
+        className ?? ''
+      ].join(' ')}
     >
       <span className="sr-only">{title}</span>
       <span
         className={[
-          "absolute top-0.5 left-0.5 h-5 w-5 rounded-full shadow transform transition-transform",
-          "bg-[var(--white)] dark:bg-[var(--gray-dark-mode-300)]",
-          isDark ? "translate-x-4" : "translate-x-0",
-        ].join(" ")}
+          'absolute top-0.5 left-0.5 h-4 w-4 rounded-full shadow transform transition-transform',
+          'bg-[var(--white)] dark:bg-[var(--gray-dark-mode-300)]',
+          isDark ? 'translate-x-4' : 'translate-x-0'
+        ].join(' ')}
       />
     </button>
-  );
+  )
 }
