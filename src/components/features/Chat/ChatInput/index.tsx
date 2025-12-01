@@ -20,7 +20,7 @@ export const ChatInput = ({
   })
 
   return (
-    <div className="w-full rounded-lg border border-[var(--gray-light-mode-300)] dark:border-[var(--gray-dark-mode-800)] ">
+    <div className="w-full rounded-3xl border border-[var(--gray-light-mode-300)] dark:border-[var(--gray-dark-mode-800)] ">
       <div className="rounded-lg sm:px-4 sm:py-3">
         <ChatActions />
       </div>
@@ -33,12 +33,10 @@ export const ChatInput = ({
         <button
           type="button"
           aria-label="Send message"
-          className="bottom-4 cursor-pointer right-4 rounded-md px-3 py-2 text-sm font-medium shadow-sm"
+          className="bottom-4 cursor-pointer border-none right-4 rounded-md px-3 py-2 text-sm font-medium shadow-sm"
           {...sendButtonProps}
         >
-          {
-            <SendHorizontal className="w-4 h-4 text-[var(--gray-neutral-400)]" />
-          }
+          {<SendHorizontal className="w-4 h-4 text-[var(--brand-600)]" />}
         </button>
       </div>
     </div>

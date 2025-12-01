@@ -49,10 +49,7 @@ export const ChatMessages = ({
                   'bg-[var(--gray-light-mode-200)] text-[var(--gray-light-mode-800)]',
                   'dark:bg-[var(--gray-dark-mode-800)] dark:text-[var(--gray-dark-mode-25)]'
                 ].join(' ')
-              : [
-                  'bg-[var(--gray-light-mode-200)] text-[var(--gray-light-mode-900)] border border-[var(--gray-light-mode-200)]',
-                  'dark:bg-[var(--gray-dark-mode-900)] dark:text-[var(--gray-dark-mode-25)] dark:border-[var(--gray-dark-mode-800)]'
-                ].join(' ')
+              : ''
 
             return (
               <div key={m.id} className={['flex w-full', alignment].join(' ')}>

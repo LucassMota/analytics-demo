@@ -48,11 +48,11 @@ export const Chat = () => {
   }, [])
 
   return (
-    <div className="h-full w-full flex flex-col">
-      <div className="flex-1 overflow-y-auto">
+    <div className="h-full w-full flex flex-col items-center ">
+      <div className="flex-1 w-[800px] overflow-y-auto">
         <ChatMessages messages={messages} />
       </div>
-      <div className="pt-4">
+      <div className="pt-4 px-4 w-[800px]">
         <ChatInput onSend={handleSend} />
       </div>
     </div>
