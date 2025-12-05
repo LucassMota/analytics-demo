@@ -1,17 +1,9 @@
 import { useMemo, useEffect, useRef } from 'react'
 import { useChatMessages } from './controller'
-import { ChatMessage } from '../types'
 
-type ChatMessagesProps = {
-  messages?: ChatMessage[]
-  className?: string
-}
-
-export const ChatMessages = ({
-  messages = [],
-  className = ''
-}: ChatMessagesProps) => {
-  const { list, hasMessages } = useChatMessages({ messages })
+export const ChatMessages = () => {
+  const { list, hasMessages } = useChatMessages()
+  console.log({ list })
 
   const items = useMemo(() => list, [list])
 
@@ -29,8 +21,8 @@ export const ChatMessages = ({
     <div
       className={[
         'w-full h-full flex flex-col gap-3 p-4',
-        'bg-[var(--gray-light-mode-25)] dark:bg-[var(--gray-dark-mode-950)]',
-        className
+        'bg-[var(--gray-light-mode-25)] dark:bg-[var(--gray-dark-mode-950)]'
+        // className
       ].join(' ')}
     >
       {!hasMessages ? (

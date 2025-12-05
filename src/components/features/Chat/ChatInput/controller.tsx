@@ -1,6 +1,8 @@
 'use client'
 
 import { useCallback, useMemo, useState } from 'react'
+import { sendSynchrounousMessage } from './actions'
+import { useChat } from '../controller'
 
 export type ChatInputControllerProps = {
   value?: string
@@ -17,6 +19,8 @@ export const useChatInput = ({
   onSend,
   disabled = false
 }: ChatInputControllerProps = {}) => {
+  const { setUserMessage, setAgentMessage } = useChat()
+
   const [uncontrolledValue, setUncontrolledValue] = useState(defaultValue)
 
   const isControlled = controlledValue !== undefined
@@ -32,11 +36,16 @@ export const useChatInput = ({
 
   const canSend = value.trim().length > 0 && !disabled
 
-  const handleSend = useCallback(() => {
+  const handleSend = useCallback(async () => {
     if (!canSend) return
-    onSend?.(value.trim())
+
+    setUserMessage(value)
     if (!isControlled) setUncontrolledValue('')
-  }, [canSend, onSend, value, isControlled])
+    setAgentMessage({ content: 'thinking...' })
+    const agentResponse = await sendSynchrounousMessage(value)
+    console.log(agentResponse)
+    setAgentMessage(agentResponse)
+  }, [canSend, onSend, value, isControlled, setUserMessage, setAgentMessage])
 
   const textareaProps = useMemo(
     () => ({
