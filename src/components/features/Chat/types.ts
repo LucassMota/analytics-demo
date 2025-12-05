@@ -10,7 +10,7 @@ export type ChatMessage = {
 export type UseChatMessagesProps = {
   messages?: ChatMessage[]
   defaultMessages?: ChatMessage[]
-  onMessagesChangeAction?: (next: ChatMessage[]) => void
+  onMessagesChange?: (next: ChatMessage[]) => void
 }
 
 export type ChatPayload = {

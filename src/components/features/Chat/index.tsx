@@ -4,13 +4,10 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import ChatInput from './ChatInput'
 import { ChatMessages } from './ChatMessages'
 import { ChatMessage } from './types'
-import { returnLoremIpsum } from './utils'
-import { ChatProvider } from './controller'
+import { sendSynchrounousMessage } from './ChatInput/actions'
 
 export const Chat = () => {
-  // const [messages, setMessages] = useState<ChatMessage[]>([])
-  // const [userMessage, setUserMessage] = useState<string>('')
-  // const [agentMessage, setAgentMessage] = useState<string>('')
+  const [messages, setMessages] = useState<ChatMessage[]>([])
 
   const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([])
 
@@ -21,55 +18,52 @@ export const Chat = () => {
     }
   }, [])
 
-  // const handleUserInput = useCallback((value: string) => {
-  //   setUserMessage(value)
-  // }, [])
+  const handleSend = useCallback(async (content: string) => {
+    const userId = `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`
+    const assistantId = `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`
 
-  // const handleAgentInput = useCallback((value: string) => {
-  //   setAgentMessage(value)
-  // }, [])
+    const user: ChatMessage = {
+      id: userId,
+      content,
+      role: 'user',
+      createdAt: Date.now()
+    }
 
-  // const handleSend = useCallback((content: string) => {
-  //   const user: ChatMessage = {
-  //     id: `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`,
-  //     content,
-  //     role: 'user',
-  //     createdAt: Date.now()
-  //   }
+    const assistantThinking: ChatMessage = {
+      id: assistantId,
+      content: 'Thinking...',
+      role: 'assistant',
+      createdAt: Date.now()
+    }
 
-  //   const assistant: ChatMessage = {
-  //     id: `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`,
-  //     content: 'Thinking...',
-  //     role: 'assistant',
-  //     createdAt: Date.now()
-  //   }
+    setMessages((prev) => [...prev, user, assistantThinking])
 
-  //   setMessages((prev) => [...prev, user, assistant])
-  //   const timeoutId = setTimeout(() => {
-  //     const updated = returnLoremIpsum()
-  //     setMessages((prev) =>
-  //       prev.map((m) =>
-  //         m.id === assistant.id ? { ...m, content: updated } : m
-  //       )
-  //     )
-  //     timeoutsRef.current = timeoutsRef.current.filter((t) => t !== timeoutId)
-  //   }, 3000)
-
-  //   timeoutsRef.current.push(timeoutId)
-  // }, [])
+    try {
+      const agentResponse = await sendSynchrounousMessage(content)
+      setMessages((prev) =>
+        prev.map((m) =>
+          m.id === assistantId ? { ...m, content: agentResponse.content } : m
+        )
+      )
+    } catch {
+      setMessages((prev) =>
+        prev.map((m) =>
+          m.id === assistantId ? { ...m, content: 'Something went wrong' } : m
+        )
+      )
+    }
+  }, [])
 
   return (
-    <ChatProvider>
-      <div className="h-full w-full flex flex-col items-center">
-        <div className="flex-1 w-[800px] overflow-y-auto">
-          {/*<ChatMessages messages={messages} />*/}
-          <ChatMessages />
-        </div>
-        <div className="pt-4 px-4 w-[800px]">
-          {/*<ChatInput onSend={handleSend} />*/}
-          <ChatInput />
-        </div>
+    <div className="h-full w-full flex flex-col items-center ">
+      <div className="flex-1 w-[800px] overflow-y-auto">
+        <ChatMessages messages={messages} />
       </div>
-    </ChatProvider>
+      <div className="pt-4 px-4 w-[800px]">
+        <ChatInput onSend={handleSend} />
+      </div>
+    </div>
   )
 }
+
+export default Chat

@@ -1,20 +1,14 @@
 'use client'
 
 import { useCallback, useMemo, useState } from 'react'
-import {
-  ChatMessage,
-  ChatRole,
-  UseChatMessagesProps,
-  ChatPayload
-} from '../types'
-import { useChat } from '../controller'
+import { ChatMessage, ChatRole, UseChatMessagesProps } from '../types'
 
 const genId = () => `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`
 
 export const useChatMessages = ({
   messages: controlledMessages,
   defaultMessages = [],
-  onMessagesChangeAction
+  onMessagesChange
 }: UseChatMessagesProps = {}) => {
   const [uncontrolledMessages, setUncontrolledMessages] =
     useState<ChatMessage[]>(defaultMessages)
@@ -24,57 +18,12 @@ export const useChatMessages = ({
     ? (controlledMessages as ChatMessage[])
     : uncontrolledMessages
 
-  const { userMessage, agentMessage } = useChat()
-
-  const chatDerivedMessages: ChatMessage[] = useMemo(() => {
-    const list: ChatMessage[] = []
-    if (userMessage && userMessage.trim().length > 0) {
-      list.push({
-        id: 'user:current',
-        content: userMessage,
-        role: 'user'
-      })
-    }
-    if (agentMessage) {
-      console.log({ agentMessage })
-      list.push({
-        id: 'assistant:current',
-        content: agentMessage.content,
-        role: 'assistant'
-      })
-      // if (typeof agentMessage === 'string') {
-      //   const content =
-      //     agentMessage.toLowerCase() === 'thinking...'
-      //       ? 'Thinking...'
-      //       : agentMessage
-      //   list.push({
-      //     id: 'assistant:current',
-      //     content,
-      //     role: 'assistant'
-      //   })
-      // } else if (
-      //   typeof agentMessage === 'object' &&
-      //   'message' in agentMessage
-      // ) {
-      //   const content = (agentMessage as ChatPayload).message ?? ''
-      //   if (content) {
-      //     list.push({
-      //       id: 'assistant:current',
-      //       content,
-      //       role: 'assistant'
-      //     })
-      //   }
-      // }
-    }
-    return list
-  }, [userMessage, agentMessage])
-
   const setMessages = useCallback(
     (next: ChatMessage[]) => {
       if (!isControlled) setUncontrolledMessages(next)
-      onMessagesChangeAction?.(next)
+      onMessagesChange?.(next)
     },
-    [isControlled, onMessagesChangeAction]
+    [isControlled, onMessagesChange]
   )
 
   const addMessage = useCallback(
@@ -95,11 +44,9 @@ export const useChatMessages = ({
 
   const clearMessages = useCallback(() => setMessages([]), [setMessages])
 
-  const list = useMemo(() => {
-    return chatDerivedMessages.length > 0 ? chatDerivedMessages : messages
-  }, [chatDerivedMessages, messages])
+  const hasMessages = messages.length > 0
 
-  const hasMessages = list.length > 0
+  const list = useMemo(() => messages, [messages])
 
   return {
     messages,
