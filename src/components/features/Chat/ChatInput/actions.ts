@@ -1,12 +1,15 @@
 import { httpExternalService } from '@/src/services/http'
-import { ChatPayload } from '../types'
+import { ChatPayload, EChatModality } from '../types'
 import {
   AGENT_VERSION,
   MODEL_QWEN,
   OLLAMA_API_URL
 } from '@/src/ai-models/constants'
 
-export const sendSynchrounousMessage = async (message: string) => {
+export const sendSynchrounousMessage = async (
+  message: string,
+  chatModality: EChatModality
+) => {
   try {
     const payload: ChatPayload = {
       message,
@@ -14,7 +17,7 @@ export const sendSynchrounousMessage = async (message: string) => {
       agent_version: AGENT_VERSION,
       model: MODEL_QWEN,
       api_url: OLLAMA_API_URL,
-      modality: 'auto',
+      modality: chatModality,
       enable_filter: false,
       persona: 'Default',
       bm25_count: 3,

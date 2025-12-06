@@ -8,9 +8,7 @@ type HtmlViewerProps = {
   title?: string
   className?: string
   iframeClassName?: string
-  // If set, forces a fixed height. Otherwise the iframe tries to auto-fit to its content height.
   height?: number | string
-  // Auto-resize iframe to content height (when height is not provided)
   autoHeight?: boolean
 }
 
@@ -41,7 +39,6 @@ export default function HtmlViewer({
       setHtml(content)
     } catch (e: any) {
       setError('Failed to load HTML content.')
-      // Optional: console.error(e)
       setHtml('')
     } finally {
       setLoading(false)
@@ -52,7 +49,6 @@ export default function HtmlViewer({
     loadHtml()
   }, [loadHtml])
 
-  // Adjust iframe height to fit content (if allowed) after it loads
   const adjustIframeHeight = useCallback(() => {
     if (!autoHeight || fixedHeight || !iframeRef.current) return
     try {
@@ -60,7 +56,6 @@ export default function HtmlViewer({
         iframeRef.current.contentDocument ||
         iframeRef.current.contentWindow?.document
       if (!doc) return
-      // Measure heights
       const htmlEl = doc.documentElement
       const bodyEl = doc.body
       const h1 = htmlEl ? htmlEl.scrollHeight : 0
@@ -69,12 +64,9 @@ export default function HtmlViewer({
       if (newHeight > 0) {
         iframeRef.current.style.height = `${newHeight}px`
       }
-    } catch {
-      // Cross-origin or sandbox restriction — ignore
-    }
+    } catch {}
   }, [autoHeight, fixedHeight])
 
-  // If the content mutates after load, try a delayed resize once
   useEffect(() => {
     if (!autoHeight || fixedHeight) return
     const t = setTimeout(adjustIframeHeight, 300)
@@ -94,7 +86,6 @@ export default function HtmlViewer({
           ref={iframeRef}
           title={title}
           srcDoc={html}
-          // Allow scripts/styles inside the iframe while keeping isolation
           sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
           className={[
             'w-full rounded border border-[var(--gray-light-mode-200)] dark:border-[var(--gray-dark-mode-800)] bg-white',
@@ -102,7 +93,7 @@ export default function HtmlViewer({
           ].join(' ')}
           style={{
             width: '100%',
-            height: fixedHeight ?? '360px' // initial height; may auto-resize on load
+            height: fixedHeight ?? '360px'
           }}
           onLoad={adjustIframeHeight}
         />

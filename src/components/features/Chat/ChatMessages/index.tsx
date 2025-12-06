@@ -63,7 +63,7 @@ export const ChatMessages = ({
                     bubble
                   ].join(' ')}
                 >
-                  {m.content}
+                  {!m.chartHTMLPath && m.content}
                   {m.chartHTMLPath && (
                     <div className="py-2">
                       <HtmlViewer chartHTMLPath={m.chartHTMLPath} />

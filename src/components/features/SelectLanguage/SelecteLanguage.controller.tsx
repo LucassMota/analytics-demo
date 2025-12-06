@@ -1,18 +1,18 @@
-import { useState, useEffect } from "react";
-import { getCookie } from "cookies-next";
-import { ELanguage } from "./types";
+import { useState, useEffect } from 'react'
+import { getCookie } from 'cookies-next'
+import { ELanguage } from './types'
 
 const useSelectLanguage = () => {
-  const [language, setLanguage] = useState<ELanguage>();
+  const [language, setLanguage] = useState<ELanguage>('en-US' as ELanguage)
 
   useEffect(() => {
-    const locale = getCookie("NEXT_LOCALE");
+    const locale = getCookie('NEXT_LOCALE')
     if (locale) {
-      setLanguage(locale as ELanguage);
+      setLanguage(locale as ELanguage)
     }
-  }, []);
+  }, [])
 
-  return { language, setLanguage };
-};
+  return { language, setLanguage }
+}
 
-export default useSelectLanguage;
+export default useSelectLanguage

@@ -1,5 +1,10 @@
 export type ChatRole = 'user' | 'assistant' | 'system'
 
+export enum EChatModality {
+  NORMAL = 'normal',
+  TEXT2SQL = 'text2sql'
+}
+
 export type ChatMessage = {
   id: string
   content: string

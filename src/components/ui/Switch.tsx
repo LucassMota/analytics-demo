@@ -2,6 +2,7 @@
 
 import { useTheme } from '@/src/providers/ThemeProvider'
 import React from 'react'
+import { Moon, Sun } from 'lucide-react'
 
 type SwitchProps = {
   className?: string
@@ -9,12 +10,6 @@ type SwitchProps = {
   title?: string
 }
 
-/**
- * Minimal theme switch component using ThemeProvider context.
- * - Toggles between "light" and "dark" themes
- * - Accessible (role="switch", aria-checked)
- * - Minimal Tailwind styling leveraging palette variables
- */
 export default function Switch({
   className,
   id,
@@ -44,18 +39,18 @@ export default function Switch({
       className={[
         'relative inline-flex h-6 w-10 items-center rounded-full transition-colors',
         'border border-[var(--gray-neutral-200)]',
-        'bg-[var(--gray-light-mode-300)] dark:bg-[var(--gray-dark-mode-800)]',
         className ?? ''
       ].join(' ')}
     >
       <span className="sr-only">{title}</span>
       <span
         className={[
-          'absolute top-0.5 left-0.5 h-4 w-4 rounded-full shadow transform transition-transform',
-          'bg-[var(--white)] dark:bg-[var(--gray-dark-mode-300)]',
+          'absolute top-0.5 left-0.5 h-4 w-4 rounded-full shadow transform transition-transform flex items-center justify-center',
           isDark ? 'translate-x-4' : 'translate-x-0'
         ].join(' ')}
-      />
+      >
+        {isDark ? <Sun size={12} /> : <Moon size={12} />}
+      </span>
     </button>
   )
 }
