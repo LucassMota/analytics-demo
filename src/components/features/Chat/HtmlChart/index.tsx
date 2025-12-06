@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { fetchHtmlChart } from './actions'
+import { useTranslations } from 'next-intl'
 
 type HtmlViewerProps = {
   chartHTMLPath: string
@@ -14,11 +15,13 @@ type HtmlViewerProps = {
 
 export default function HtmlViewer({
   chartHTMLPath,
-  title = 'html-chart',
+  title,
   iframeClassName = '',
   height,
   autoHeight = true
 }: HtmlViewerProps) {
+  const t = useTranslations('chat')
+  const resolvedTitle = title ?? t('htmlChartTitle')
   const [html, setHtml] = useState<string>('')
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
@@ -37,8 +40,8 @@ export default function HtmlViewer({
       const response = await fetchHtmlChart(chartHTMLPath)
       const content = typeof response?.html === 'string' ? response.html : ''
       setHtml(content)
-    } catch (e: any) {
-      setError('Failed to load HTML content.')
+    } catch (_: unknown) {
+      setError(t('failedToLoadHtml'))
       setHtml('')
     } finally {
       setLoading(false)
@@ -79,12 +82,12 @@ export default function HtmlViewer({
         <div className="text-sm text-red-600">{error}</div>
       ) : loading ? (
         <div className="text-sm text-[var(--gray-neutral-500)]">
-          Loading chart…
+          {t('loadingChart')}
         </div>
       ) : html ? (
         <iframe
           ref={iframeRef}
-          title={title}
+          title={resolvedTitle}
           srcDoc={html}
           sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
           className={[
@@ -99,7 +102,7 @@ export default function HtmlViewer({
         />
       ) : (
         <div className="text-sm text-[var(--gray-neutral-500)]">
-          No HTML to display.
+          {t('noHtmlToDisplay')}
         </div>
       )}
     </div>

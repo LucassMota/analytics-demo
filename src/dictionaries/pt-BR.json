@@ -1,6 +1,15 @@
 {
-  "home-page": {
-    "welcome": "Welcome to the Analytics Demo!",
-    "description": "This demo showcases the power of analytics in understanding user behavior."
+  "chat": {
+    "messages": "Mensagens",
+    "charts": "Gráficos",
+    "inputPlaceholder": "Digite sua mensagem...",
+    "sendAriaLabel": "Enviar mensagem",
+    "noMessagesYet": "Ainda não há mensagens",
+    "failedToLoadHtml": "Falha ao carregar o conteúdo HTML.",
+    "loadingChart": "Carregando gráfico…",
+    "noHtmlToDisplay": "Nenhum HTML para exibir.",
+    "thinking": "Pensando...",
+    "htmlChartTitle": "Gráfico HTML",
+    "somethingWentWrong": "Algo deu errado"
   }
 }

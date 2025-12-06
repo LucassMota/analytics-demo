@@ -2,6 +2,7 @@ import { useMemo, useEffect, useRef } from 'react'
 import { useChatMessages } from './controller'
 import { ChatMessage } from '../types'
 import HtmlViewer from '../HtmlChart'
+import { useTranslations } from 'next-intl'
 
 type ChatMessagesProps = {
   messages?: ChatMessage[]
@@ -13,6 +14,7 @@ export const ChatMessages = ({
   className = ''
 }: ChatMessagesProps) => {
   const { list, hasMessages } = useChatMessages({ messages })
+  const t = useTranslations('chat')
 
   const items = useMemo(() => list, [list])
 
@@ -36,7 +38,7 @@ export const ChatMessages = ({
     >
       {!hasMessages ? (
         <div className="mx-auto text-sm text-[var(--gray-neutral-400)]">
-          No messages yet
+          {t('noMessagesYet')}
         </div>
       ) : (
         <>

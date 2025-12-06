@@ -3,6 +3,7 @@
 import { SendHorizontal } from 'lucide-react'
 import { ChatActions } from '../ChatActions'
 import { useChatInput } from './controller'
+import { useTranslations } from 'next-intl'
 
 export const ChatInput = ({
   onSend,
@@ -13,6 +14,7 @@ export const ChatInput = ({
   value?: string
   disabled?: boolean
 }) => {
+  const t = useTranslations('chat')
   const { textareaProps, sendButtonProps } = useChatInput({
     onSend,
     value,
@@ -26,13 +28,13 @@ export const ChatInput = ({
       </div>
       <textarea
         className="sm:px-4 sm:py-3 w-full min-h-28 resize-none rounded-md outline-none placeholder:text-[var(--gray-neutral-400)] bg-[var(--gray-light-mode-25)] text-[var(--gray-light-mode-900)] dark:bg-[var(--gray-dark-mode-950)] dark:text-[var(--gray-dark-mode-25)]"
-        placeholder="Type your message..."
+        placeholder={t('inputPlaceholder')}
         {...textareaProps}
       />
       <div className="p-2 flex rounded-lg flex-row items-center justify-end">
         <button
           type="button"
-          aria-label="Send message"
+          aria-label={t('sendAriaLabel')}
           className="bottom-4 cursor-pointer border-none right-4 rounded-md px-3 py-2 text-sm font-medium shadow-sm"
           {...sendButtonProps}
         >
