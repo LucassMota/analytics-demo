@@ -40,9 +40,16 @@ export const Chat = () => {
 
     try {
       const agentResponse = await sendSynchrounousMessage(content)
+      console.log(agentResponse)
       setMessages((prev) =>
         prev.map((m) =>
-          m.id === assistantId ? { ...m, content: agentResponse.content } : m
+          m.id === assistantId
+            ? {
+                ...m,
+                content: agentResponse.content,
+                chartHTMLPath: agentResponse.chart_html_path
+              }
+            : m
         )
       )
     } catch {

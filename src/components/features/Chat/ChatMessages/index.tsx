@@ -1,6 +1,7 @@
 import { useMemo, useEffect, useRef } from 'react'
 import { useChatMessages } from './controller'
 import { ChatMessage } from '../types'
+import HtmlViewer from '../HtmlChart'
 
 type ChatMessagesProps = {
   messages?: ChatMessage[]
@@ -46,20 +47,28 @@ export const ChatMessages = ({
 
             const bubble = isUser
               ? [
-                  'bg-[var(--gray-light-mode-200)] text-[var(--gray-light-mode-800)]',
+                  'self-end w-max bg-[var(--gray-light-mode-200)] text-[var(--gray-light-mode-800)]',
                   'dark:bg-[var(--gray-dark-mode-800)] dark:text-[var(--gray-dark-mode-25)]'
                 ].join(' ')
               : ''
 
             return (
-              <div key={m.id} className={['flex w-full', alignment].join(' ')}>
+              <div
+                key={m.id}
+                className={['flex w-full flex-col', alignment].join(' ')}
+              >
                 <div
                   className={[
-                    'inline-block w-max max-w-[85%] rounded-2xl px-3 py-2 text-sm leading-6 whitespace-pre-line break-words',
+                    'inline-block w-full max-w-[85%] rounded-2xl px-3 py-2 text-sm leading-6 whitespace-pre-line break-words',
                     bubble
                   ].join(' ')}
                 >
                   {m.content}
+                  {m.chartHTMLPath && (
+                    <div className="py-2">
+                      <HtmlViewer chartHTMLPath={m.chartHTMLPath} />
+                    </div>
+                  )}
                 </div>
               </div>
             )

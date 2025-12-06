@@ -40,3 +40,5 @@ new-globals.css
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/charts

@@ -4,6 +4,7 @@ export type ChatMessage = {
   id: string
   content: string
   role?: ChatRole
+  chartHTMLPath?: string
   createdAt?: number
 }
 

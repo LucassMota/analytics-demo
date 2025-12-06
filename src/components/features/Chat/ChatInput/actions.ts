@@ -1,4 +1,4 @@
-import { httpService } from '@/src/services/http'
+import { httpExternalService } from '@/src/services/http'
 import { ChatPayload } from '../types'
 import {
   AGENT_VERSION,
@@ -22,7 +22,7 @@ export const sendSynchrounousMessage = async (message: string) => {
       mcp_sse_url: 'http://localhost:8811/sse',
       stream_thinking: false
     }
-    const response = await httpService.post('/chat', payload)
+    const response = await httpExternalService.post('/chat', payload)
     return response.data
   } catch (error) {
     throw error

@@ -1,7 +1,6 @@
 'use client'
 
 import { useCallback, useMemo, useState } from 'react'
-import { sendSynchrounousMessage } from './actions'
 
 export type ChatInputControllerProps = {
   value?: string
