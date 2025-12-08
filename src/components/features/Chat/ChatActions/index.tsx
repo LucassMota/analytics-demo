@@ -11,7 +11,7 @@ export const ChatActions = () => {
     <div className="py-2 flex rounded-lg flex-row gap-2 items-center">
       <button
         type="button"
-        aria-label={t('messages')}
+        aria-label={t('informationQuery')}
         onClick={() => handleModalityChange(EChatModality.NORMAL)}
         className={cn(
           'bottom-4 right-4 rounded-md px-3 py-2 text-sm font-medium shadow-sm',
@@ -21,12 +21,12 @@ export const ChatActions = () => {
             : 'bg-[var(--gray-light-mode-200)] dark:bg-[var(--gray-dark-mode-900)]'
         )}
       >
-        {t('messages')}
+        {t('informationQuery')}
       </button>
 
       <button
         type="button"
-        aria-label={t('charts')}
+        aria-label={t('analytics')}
         onClick={() => handleModalityChange(EChatModality.TEXT2SQL)}
         className={cn(
           'bottom-4 right-4 rounded-md px-3 py-2 text-sm font-medium shadow-sm',
@@ -36,7 +36,7 @@ export const ChatActions = () => {
             : 'bg-[var(--gray-light-mode-200)] dark:bg-[var(--gray-dark-mode-900)]'
         )}
       >
-        {t('charts')}
+        {t('analytics')}
       </button>
     </div>
   )

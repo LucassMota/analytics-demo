@@ -20,10 +20,7 @@ export const Layout = ({ children }: LayoutProps) => {
             isSidebarOpen={isSidebarOpen}
             setIsSidebarOpen={setIsSidebarOpen}
           />
-          <main
-            role="main"
-            className="flex-1 max-h-full overflow-auto min-w-0 p-4 sm:p-6"
-          >
+          <main role="main" className="flex-1 max-h-full overflow-auto min-w-0">
             {children}
           </main>
         </div>

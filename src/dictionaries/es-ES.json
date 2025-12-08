@@ -1,7 +1,7 @@
 {
   "chat": {
-    "messages": "Mensajes",
-    "charts": "Gráficos",
+    "informationQuery": "Consulta de información",
+    "analytics": "Analytics",
     "inputPlaceholder": "Escribe tu mensaje...",
     "sendAriaLabel": "Enviar mensaje",
     "noMessagesYet": "Aún no hay mensajes",
