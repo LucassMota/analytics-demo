@@ -59,7 +59,7 @@ export default function SourcesSidebar({
   )
 
   const sidebarClass = cn(
-    'fixed top-0 right-0 h-screen w-[529px] max-w-screen bg-white text-gray-900',
+    'fixed top-0 right-0 h-screen w-[529px] max-w-screen bg-[var(--gray-light-mode-25)] text-[var(--gray-light-mode-900)] dark:bg-[var(--gray-dark-mode-900)] dark:text-[var(--gray-dark-mode-25)] text-gray-900',
     'shadow-xl border-l border-black/10 flex flex-col overflow-hidden',
     'will-change-transform transition-all',
     mounted ? 'duration-300 ease-[cubic-bezier(.22,.61,.36,1)]' : 'duration-0',
@@ -75,8 +75,8 @@ export default function SourcesSidebar({
 
   const closeBtnClass = cn(
     'inline-flex items-center justify-center rounded-md',
-    'border border-black/10 bg-gray-50 px-2 py-1 font-bold',
-    'text-gray-900 shadow-sm hover:bg-gray-100 active:scale-95 transition'
+    'border border-black/10 px-2 py-1 font-bold',
+    'text-[var(--gray-light-mode-400)] shadow-sm active:scale-95 transition'
   )
 
   const contentClass = cn('flex-1 overflow-y-auto p-4')

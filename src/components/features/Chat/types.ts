@@ -10,6 +10,8 @@ export type ChatMessage = {
   content: string
   role?: ChatRole
   chartHTMLPath?: string
+  sqlQuery?: string
+  sources?: []
   createdAt?: number
 }
 

@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl'
 export const useChat = () => {
   const t = useTranslations('chat')
   const [messages, setMessages] = useState<ChatMessage[]>([])
+  const [lastMessage, setLastMessage] = useState<ChatMessage | null>(null)
 
   const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([])
 
@@ -35,6 +36,7 @@ export const useChat = () => {
         createdAt: Date.now()
       }
 
+      setLastMessage(assistantThinking)
       setMessages((prev) => [...prev, user, assistantThinking])
 
       try {
@@ -72,6 +74,7 @@ export const useChat = () => {
 
   return {
     handleSend,
-    messages
+    messages,
+    lastMessage
   }
 }
