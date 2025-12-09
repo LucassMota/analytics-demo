@@ -1,5 +1,8 @@
 {
   "chat": {
+    "close": "Fechar",
+    "chunk_details": "Detalhes do Chunk",
+    "view_more": "Ver mais",
     "source": "Fonte",
     "relevance_score": "Pontuação de relevância",
     "informationQuery": "Consulta de informação",
