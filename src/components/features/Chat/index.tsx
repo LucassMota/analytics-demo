@@ -4,12 +4,13 @@ import { useState } from 'react'
 import ChatInput from './ChatInput'
 import { ChatMessages } from './ChatMessages'
 import { useChat } from './controller'
-import SourcesSidebar from './SourcesSidebar'
+import SourcesAndSQLSidebar from './SourcesAndSQLSidebar'
 import { ArrowLeftToLine } from 'lucide-react'
-import SQLViewer from './SourcesSidebar/SQLViewer'
+import SQLViewer from './SourcesAndSQLSidebar/SQLViewer'
+import { SourcesList } from './SourcesAndSQLSidebar/SourcesViewer/SourcesList'
 
 export const Chat = () => {
-  const { handleSend, messages, lastMessage } = useChat()
+  const { handleSend, messages, lastMessageResourceAndSQLData } = useChat()
   const [openSources, setOpenSources] = useState<boolean>(false)
 
   return (
@@ -42,20 +43,23 @@ export const Chat = () => {
           />
         </div>
       </div>
-      <SourcesSidebar
-        title="Sources"
+      <SourcesAndSQLSidebar
+        title={
+          lastMessageResourceAndSQLData?.sqlQuery
+            ? 'Generated SQL Query'
+            : 'Ranked Results'
+        }
         open={openSources}
         onOpenChangeAction={setOpenSources}
         showFloatingToggle={false}
       >
-        {
-          <SQLViewer
-            sql={
-              "```sql\nSELECT \n  d.english_month_name, \n  d.month_number_of_year, \n  SUM(fis.sales_amount) AS total_sales\nFROM FACT_INTERNET_SALES fis\nJOIN DIM_DATE d ON fis.order_date_key = d.date_key\nJOIN DIM_CUSTOMER c ON fis.customer_key = c.customer_key\nWHERE c.customer_alternate_key = 'NVIDIA Corporation'\nGROUP BY d.english_month_name, d.month_number_of_year\nORDER BY total_sales DESC;\sql\nSELECT \n  d.english_month_name, \n  d.month_number_of_year, \n  SUM(fis.sales_amount) AS total_sales\nFROM FACT_INTERNET_SALES fis\nJOIN DIM_DATE d ON fis.order_date_key = d.date_key\nJOIN DIM_CUSTOMER c ON fis.customer_key = c.customer_key\nWHERE c.customer_alternate_key = 'NVIDIA Corporation'\nGROUP BY d.english_month_name, d.month_number_of_year\nORDER BY total_sales DESC;\nsql\nSELECT \n  d.english_month_name, \n  d.month_number_of_year, \n  SUM(fis.sales_amount) AS total_sales\nFROM FACT_INTERNET_SALES fis\nJOIN DIM_DATE d ON fis.order_date_key = d.date_key\nJOIN DIM_CUSTOMER c ON fis.customer_key = c.customer_key\nWHERE c.customer_alternate_key = 'NVIDIA Corporation'\nGROUP BY d.english_month_name, d.month_number_of_year\nORDER BY total_sales DESC;\nsql\nSELECT \n  d.english_month_name, \n  d.month_number_of_year, \n  SUM(fis.sales_amount) AS total_sales\nFROM FACT_INTERNET_SALES fis\nJOIN DIM_DATE d ON fis.order_date_key = d.date_key\nJOIN DIM_CUSTOMER c ON fis.customer_key = c.customer_key\nWHERE c.customer_alternate_key = 'NVIDIA Corporation'\nGROUP BY d.english_month_name, d.month_number_of_year\nORDER BY total_sales DESC;\nsql\nSELECT \n  d.english_month_name, \n  d.month_number_of_year, \n  SUM(fis.sales_amount) AS total_sales\nFROM FACT_INTERNET_SALES fis\nJOIN DIM_DATE d ON fis.order_date_key = d.date_key\nJOIN DIM_CUSTOMER c ON fis.customer_key = c.customer_key\nWHERE c.customer_alternate_key = 'NVIDIA Corporation'\nGROUP BY d.english_month_name, d.month_number_of_year\nORDER BY total_sales DESC;\nsql\nSELECT \n  d.english_month_name, \n  d.month_number_of_year, \n  SUM(fis.sales_amount) AS total_sales\nFROM FACT_INTERNET_SALES fis\nJOIN DIM_DATE d ON fis.order_date_key = d.date_key\nJOIN DIM_CUSTOMER c ON fis.customer_key = c.customer_key\nWHERE c.customer_alternate_key = 'NVIDIA Corporation'\nGROUP BY d.english_month_name, d.month_number_of_year\nORDER BY total_sales DESC;\nsql\nSELECT \n  d.english_month_name, \n  d.month_number_of_year, \n  SUM(fis.sales_amount) AS total_sales\nFROM FACT_INTERNET_SALES fis\nJOIN DIM_DATE d ON fis.order_date_key = d.date_key\nJOIN DIM_CUSTOMER c ON fis.customer_key = c.customer_key\nWHERE c.customer_alternate_key = 'NVIDIA Corporation'\nGROUP BY d.english_month_name, d.month_number_of_year\nORDER BY total_sales DESC;\nsql\nSELECT \n  d.english_month_name, \n  d.month_number_of_year, \n  SUM(fis.sales_amount) AS total_sales\nFROM FACT_INTERNET_SALES fis\nJOIN DIM_DATE d ON fis.order_date_key = d.date_key\nJOIN DIM_CUSTOMER c ON fis.customer_key = c.customer_key\nWHERE c.customer_alternate_key = 'NVIDIA Corporation'\nGROUP BY d.english_month_name, d.month_number_of_year\nORDER BY total_sales DESC;\nsql\nSELECT \n  d.english_month_name, \n  d.month_number_of_year, \n  SUM(fis.sales_amount) AS total_sales\nFROM FACT_INTERNET_SALES fis\nJOIN DIM_DATE d ON fis.order_date_key = d.date_key\nJOIN DIM_CUSTOMER c ON fis.customer_key = c.customer_key\nWHERE c.customer_alternate_key = 'NVIDIA Corporation'\nGROUP BY d.english_month_name, d.month_number_of_year\nORDER BY total_sales DESC;\nsql\nSELECT \n  d.english_month_name, \n  d.month_number_of_year, \n  SUM(fis.sales_amount) AS total_sales\nFROM FACT_INTERNET_SALES fis\nJOIN DIM_DATE d ON fis.order_date_key = d.date_key\nJOIN DIM_CUSTOMER c ON fis.customer_key = c.customer_key\nWHERE c.customer_alternate_key = 'NVIDIA Corporation'\nGROUP BY d.english_month_name, d.month_number_of_year\nORDER BY total_sales DESC;\nsql\nSELECT \n  d.english_month_name, \n  d.month_number_of_year, \n  SUM(fis.sales_amount) AS total_sales\nFROM FACT_INTERNET_SALES fis\nJOIN DIM_DATE d ON fis.order_date_key = d.date_key\nJOIN DIM_CUSTOMER c ON fis.customer_key = c.customer_key\nWHERE c.customer_alternate_key = 'NVIDIA Corporation'\nGROUP BY d.english_month_name, d.month_number_of_year\nORDER BY total_sales DESC;\nsql\nSELECT \n  d.english_month_name, \n  d.month_number_of_year, \n  SUM(fis.sales_amount) AS total_sales\nFROM FACT_INTERNET_SALES fis\nJOIN DIM_DATE d ON fis.order_date_key = d.date_key\nJOIN DIM_CUSTOMER c ON fis.customer_key = c.customer_key\nWHERE c.customer_alternate_key = 'NVIDIA Corporation'\nGROUP BY d.english_month_name, d.month_number_of_year\nORDER BY total_sales DESC;\nsql\nSELECT \n  d.english_month_name, \n  d.month_number_of_year, \n  SUM(fis.sales_amount) AS total_sales\nFROM FACT_INTERNET_SALES fis\nJOIN DIM_DATE d ON fis.order_date_key = d.date_key\nJOIN DIM_CUSTOMER c ON fis.customer_key = c.customer_key\nWHERE c.customer_alternate_key = 'NVIDIA Corporation'\nGROUP BY d.english_month_name, d.month_number_of_year\nORDER BY total_sales DESC;\nsql\nSELECT \n  d.english_month_name, \n  d.month_number_of_year, \n  SUM(fis.sales_amount) AS total_sales\nFROM FACT_INTERNET_SALES fis\nJOIN DIM_DATE d ON fis.order_date_key = d.date_key\nJOIN DIM_CUSTOMER c ON fis.customer_key = c.customer_key\nWHERE c.customer_alternate_key = 'NVIDIA Corporation'\nGROUP BY d.english_month_name, d.month_number_of_year\nORDER BY total_sales DESC;\nsql\nSELECT \n  d.english_month_name, \n  d.month_number_of_year, \n  SUM(fis.sales_amount) AS total_sales\nFROM FACT_INTERNET_SALES fis\nJOIN DIM_DATE d ON fis.order_date_key = d.date_key\nJOIN DIM_CUSTOMER c ON fis.customer_key = c.customer_key\nWHERE c.customer_alternate_key = 'NVIDIA Corporation'\nGROUP BY d.english_month_name, d.month_number_of_year\nORDER BY total_sales DESC;\nsql\nSELECT \n  d.english_month_name, \n  d.month_number_of_year, \n  SUM(fis.sales_amount) AS total_sales\nFROM FACT_INTERNET_SALES fis\nJOIN DIM_DATE d ON fis.order_date_key = d.date_key\nJOIN DIM_CUSTOMER c ON fis.customer_key = c.customer_key\nWHERE c.customer_alternate_key = 'NVIDIA Corporation'\nGROUP BY d.english_month_name, d.month_number_of_year\nORDER BY total_sales DESC;\nsql\nSELECT \n  d.english_month_name, \n  d.month_number_of_year, \n  SUM(fis.sales_amount) AS total_sales\nFROM FACT_INTERNET_SALES fis\nJOIN DIM_DATE d ON fis.order_date_key = d.date_key\nJOIN DIM_CUSTOMER c ON fis.customer_key = c.customer_key\nWHERE c.customer_alternate_key = 'NVIDIA Corporation'\nGROUP BY d.english_month_name, d.month_number_of_year\nORDER BY total_sales DESC;\nsql\nSELECT \n  d.english_month_name, \n  d.month_number_of_year, \n  SUM(fis.sales_amount) AS total_sales\nFROM FACT_INTERNET_SALES fis\nJOIN DIM_DATE d ON fis.order_date_key = d.date_key\nJOIN DIM_CUSTOMER c ON fis.customer_key = c.customer_key\nWHERE c.customer_alternate_key = 'NVIDIA Corporation'\nGROUP BY d.english_month_name, d.month_number_of_year\nORDER BY total_sales DESC;\nsql\nSELECT \n  d.english_month_name, \n  d.month_number_of_year, \n  SUM(fis.sales_amount) AS total_sales\nFROM FACT_INTERNET_SALES fis\nJOIN DIM_DATE d ON fis.order_date_key = d.date_key\nJOIN DIM_CUSTOMER c ON fis.customer_key = c.customer_key\nWHERE c.customer_alternate_key = 'NVIDIA Corporation'\nGROUP BY d.english_month_name, d.month_number_of_year\nORDER BY total_sales DESC;\nsql\nSELECT \n  d.english_month_name, \n  d.month_number_of_year, \n  SUM(fis.sales_amount) AS total_sales\nFROM FACT_INTERNET_SALES fis\nJOIN DIM_DATE d ON fis.order_date_key = d.date_key\nJOIN DIM_CUSTOMER c ON fis.customer_key = c.customer_key\nWHERE c.customer_alternate_key = 'NVIDIA Corporation'\nGROUP BY d.english_month_name, d.month_number_of_year\nORDER BY total_sales DESC;\nn```"
-            }
-          />
-        }
-      </SourcesSidebar>
+        {lastMessageResourceAndSQLData?.sqlQuery && (
+          <SQLViewer sql={lastMessageResourceAndSQLData.sqlQuery} />
+        )}
+        {lastMessageResourceAndSQLData?.sources && (
+          <SourcesList sources={lastMessageResourceAndSQLData.sources} />
+        )}
+      </SourcesAndSQLSidebar>
     </div>
   )
 }

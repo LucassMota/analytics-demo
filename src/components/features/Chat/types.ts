@@ -10,9 +10,18 @@ export type ChatMessage = {
   content: string
   role?: ChatRole
   chartHTMLPath?: string
-  sqlQuery?: string
-  sources?: []
   createdAt?: number
+}
+
+export type AgentSourceData = {
+  text: string
+  source: string
+  relevance_score: number
+}
+
+export type AgentSourcesAndSQLData = {
+  sources: AgentSourceData[]
+  sqlQuery: string
 }
 
 export type UseChatMessagesProps = {

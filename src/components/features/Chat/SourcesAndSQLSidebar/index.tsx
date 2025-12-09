@@ -24,7 +24,7 @@ type SourcesSidebarProps = {
 const FLOAT_TOGGLE_CLASSES =
   'fixed top-4 left-4 z-[10002] px-3 py-2 rounded-lg border border-black/15 bg-white text-gray-900 text-sm font-semibold shadow-sm hover:shadow active:scale-95 transition'
 
-export default function SourcesSidebar({
+export default function SourcesAndSQLSidebar({
   title = 'Sources',
   defaultOpen = false,
   open: openProp,
@@ -71,7 +71,9 @@ export default function SourcesSidebar({
     'flex items-center justify-between p-4 border-b border-black/10'
   )
 
-  const titleClass = cn('m-0 text-[18px] font-bold text-gray-900')
+  const titleClass = cn(
+    'm-0 text-[18px] font-bold text-[var(--gray-light-mode-800)] dark:text-[var(--gray-light-mode-200)]'
+  )
 
   const closeBtnClass = cn(
     'inline-flex items-center justify-center rounded-md',

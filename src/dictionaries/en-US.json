@@ -1,5 +1,7 @@
 {
   "chat": {
+    "source": "Source",
+    "relevance_score": "Relevance Score",
     "informationQuery": "Information Query",
     "analytics": "Analytics",
     "inputPlaceholder": "Type your message...",

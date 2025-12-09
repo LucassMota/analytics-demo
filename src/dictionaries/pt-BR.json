@@ -1,5 +1,7 @@
 {
   "chat": {
+    "source": "Fonte",
+    "relevance_score": "Pontuação de relevância",
     "informationQuery": "Consulta de informação",
     "analytics": "Analytics",
     "inputPlaceholder": "Digite sua mensagem...",

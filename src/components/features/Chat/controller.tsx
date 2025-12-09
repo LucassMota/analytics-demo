@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { ChatMessage, EChatModality } from './types'
+import { AgentSourcesAndSQLData, ChatMessage, EChatModality } from './types'
 import { sendSynchrounousMessage } from './ChatInput/actions'
 import { useTranslations } from 'next-intl'
 
 export const useChat = () => {
   const t = useTranslations('chat')
   const [messages, setMessages] = useState<ChatMessage[]>([])
-  const [lastMessage, setLastMessage] = useState<ChatMessage | null>(null)
+  const [lastMessageResourceAndSQLData, setLastMessageResourceAndSQLData] =
+    useState<AgentSourcesAndSQLData | null>(null)
 
   const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([])
 
@@ -36,7 +37,6 @@ export const useChat = () => {
         createdAt: Date.now()
       }
 
-      setLastMessage(assistantThinking)
       setMessages((prev) => [...prev, user, assistantThinking])
 
       try {
@@ -47,6 +47,10 @@ export const useChat = () => {
           content,
           selectedChatModality ?? EChatModality.NORMAL
         )
+        setLastMessageResourceAndSQLData({
+          sources: agentResponse.sources,
+          sqlQuery: agentResponse.sql_query
+        })
         console.log(agentResponse)
         setMessages((prev) =>
           prev.map((m) =>
@@ -75,6 +79,6 @@ export const useChat = () => {
   return {
     handleSend,
     messages,
-    lastMessage
+    lastMessageResourceAndSQLData
   }
 }
